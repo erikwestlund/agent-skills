@@ -18,6 +18,18 @@ human-readable test output or by truncating the command's output.
 Do not add PAO as a dependency solely to run tests. Use the project's existing
 test setup when PAO is unavailable.
 
+## Proportional validation
+
+Be prudent. Choose validation that is proportionate to the change and the risk
+it introduces. Start with the narrowest relevant test or check, then broaden
+only when the change affects behavior outside that scope.
+
+Do not run the full test suite merely because a file changed. For a single
+text-only edit that does not affect executable code, configuration, templates,
+or structured content, inspect the diff and run a lightweight relevant check
+only when one exists. Run broader tests when the changed behavior, shared code,
+or task requirements justify them.
+
 ## Parallel execution
 
 Prefer the project's supported parallel test command for runs that include
