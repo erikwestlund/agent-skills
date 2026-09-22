@@ -22,7 +22,7 @@ Cross-project skills for Claude Code and Codex. OpenCode reads
 | `agent-communication` | Shared agent protocol with direct and file-based transports. |
 | `context-reset` | Reset a long session: a resume note, a block to paste back in, and check-ins. |
 | `agent-repurpose-workspace` | Reuse a workspace for a new role: wrap up, rename, reset. |
-| `commits` | No agent attribution in commits and PRs; loose conventional-commit style. |
+| `commits` | No agent attribution in commits and PRs; loose conventional-commit style; ask before running the full test suite on a commit. |
 | `commit-sync` | After a commit, check the branch against `origin` and report how to synchronize it. |
 | `codex-adversarial-review` | Use Codex to independently review work from non-flagship models. |
 | `php-testing` | Run PHP tests with installed PAO support and parallel execution where supported. |
