@@ -13,7 +13,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-canonical_repo="$test_root/Projects/agents-skills"
+canonical_repo="$test_root/Projects/agent-skills"
 mkdir -p "$canonical_repo" "$test_root/.claude/skills/unmanaged" \
   "$test_root/.codex/skills/.system" "$test_root/alternate"
 cp "$source_repo/install.sh" "$canonical_repo/install.sh"
@@ -23,6 +23,8 @@ cp "$source_repo/install.sh" "$test_root/alternate/install.sh"
 ln -s /missing/retired "$test_root/.claude/skills/retired-skill"
 ln -s /wrong/source "$test_root/.codex/skills/writing"
 touch "$test_root/.codex/skills/.system/preserved"
+mkdir -p "$test_root/.claude/skills/synced/bucket"
+touch "$test_root/.claude/skills/synced/bucket/preserved"
 
 # A real directory must stop the entire run before stale links are removed.
 if env HOME="$test_root" "$canonical_repo/install.sh" \
@@ -45,6 +47,7 @@ canonical_repo="$(cd "$canonical_repo" && pwd -P)"
 
 [ ! -L "$test_root/.claude/skills/retired-skill" ]
 [ -f "$test_root/.codex/skills/.system/preserved" ]
+[ -f "$test_root/.claude/skills/synced/bucket/preserved" ]
 
 for skill_root in "$test_root/.claude/skills" "$test_root/.codex/skills"; do
   for skill in "$canonical_repo"/skills/*/; do

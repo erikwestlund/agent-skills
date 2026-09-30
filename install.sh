@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 #
 # Make this repository the source of every user-installed system-wide skill.
-# Safe to re-run. Harness-owned hidden entries, such as Codex's .system
-# directory, are left alone.
+# Safe to re-run. Harness-owned entries are left alone: hidden ones such as
+# Codex's .system directory, and Claude Code's synced directory, which holds
+# skills synced from claude.ai.
 set -euo pipefail
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
-canonical_repo="$HOME/Projects/agents-skills"
+canonical_repo="$HOME/Projects/agent-skills"
 targets=("$HOME/.claude/skills" "$HOME/.codex/skills")
+harness_owned=("synced")
+
+is_harness_owned() {
+  local name
+  for name in "${harness_owned[@]}"; do
+    [ "$1" = "$name" ] && return 0
+  done
+  return 1
+}
 
 if [ ! -d "$canonical_repo" ]; then
   echo "canonical skill repository is missing: $canonical_repo" >&2
@@ -27,6 +37,7 @@ for target in "${targets[@]}"; do
   [ -d "$target" ] || continue
   for entry in "$target"/*; do
     [ -e "$entry" ] || [ -L "$entry" ] || continue
+    is_harness_owned "$(basename "$entry")" && continue
     if [ ! -L "$entry" ]; then
       echo "unmanaged system-wide skill blocks installation: $entry" >&2
       exit 1
@@ -43,6 +54,7 @@ for target in "${targets[@]}"; do
   for entry in "$target"/*; do
     [ -e "$entry" ] || [ -L "$entry" ] || continue
     name="$(basename "$entry")"
+    is_harness_owned "$name" && continue
     if [ ! -d "$repo/skills/$name" ]; then
       rm "$entry"
       echo "removed $entry"
