@@ -24,6 +24,22 @@ Project identifiers are aliases or names from
 `~/System/config/projects/projects.yml`. `p<alias>` remains the Positron
 shortcut.
 
+## Choose a server
+
+Polyscope runs on more than one machine, and each server has its own
+repository registrations, model catalog, and workspaces. The registry is
+`~/System/config/polyscope/servers.yml`: `studio` is the Mac Studio and
+`hatchery` is the homelab Linux VM. Polyscope names that VM `polyscope`. The
+old M4 Mac Studio is retired and never used.
+
+- `launch` and `direct` target the machine you are running on. Pass
+  `-s hatchery` (or `--server`) only when the user asks for the homelab.
+- `ps servers` lists registered, online, and ignored servers.
+- `ps status <project>` lists workspaces on every registered server, one
+  server per row.
+- Send later workspace messages to the workspace ids `ps status` reports;
+  never reuse an id from another server.
+
 Use a complete task prompt when one is supplied. The launcher adds the project
 context and, for R projects, directs the agent to load `r-stats`. A user who
 asks only for a workspace has authorized a launch without an extra prompt; it
