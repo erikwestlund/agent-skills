@@ -36,6 +36,13 @@ one. Every activation brief must begin: “First, rename this workspace to
 as `agent-communication` describes. Do this before any other action.” Do not
 rely on a general naming reference later in the prompt.
 
+When a group's work spans the packages of a family project (see
+`polyscope-launch`), launch its workspaces on the family project with
+`-w <package,...>` naming the packages the group touches. Their activation
+briefs add, right after the rename instruction: "Then run `ps packages` so the
+package branches match the new name." Launch a group that works inside one
+package on that package's own project.
+
 Record the runtime alongside every workspace. Models with a managed Claude
 Code provider profile (`claude_*`, `ds_*`, `fw_*`, `zai_*`) use Claude Code by
 default. `oa_*` models use Polyscope's native OpenAI agent instead. For an

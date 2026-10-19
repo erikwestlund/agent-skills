@@ -42,6 +42,27 @@ order they arrive, unless the plan says one task depends on another.
 - Reply `MERGED` to the task agent and its orchestrator, with the resulting
   commit.
 
+## Family workspaces
+
+A reconcile workspace on a family project, such as `phx`, integrates several
+repositories. Each package directory in a family worktree is a git worktree of
+that package's repository. Every task uses one branch name across the family
+repository and each package it touches, so a merge request names one branch.
+
+- Merge one repository at a time. For each package the task touched, go to the
+  package's main checkout under the family's main directory, merge the branch
+  with the shared name into that repository's `main`, and run that
+  repository's tests. Merge the family repository's branch the same way.
+- Run any cross-package tests in the family repository after the packages are
+  merged.
+- Report one commit per repository in `MERGED` replies.
+- Push only with the user's approval. Push packages that others depend on
+  before the packages that depend on them.
+- After merging, remove the task's package worktrees with the family's
+  `scripts/workspace remove`, where the family has one, or with
+  `git worktree prune` in each package once the family workspace is gone.
+  Then delete the merged branches in each repository.
+
 ## History
 
 - Squash fixups and review rounds into the change they fix.

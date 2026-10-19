@@ -20,6 +20,32 @@ agent, select an agent model, or inspect a project's Polyscope workspaces.
 - `ps<alias>` is the generated shorthand for `ps direct <alias>`.
 - `ps status <project>` lists the project's workspaces.
 
+### Family projects
+
+A family project is a directory that holds other registered projects, each its
+own repository and ignored by the family's `.gitignore`. `~/Projects/phpstats`
+(`phx`) is one. An isolated family worktree starts without the packages.
+
+- `ps launch <family> -w <package,...|all> ...` adds the named packages to the
+  new worktree before the first agent task. Each package becomes a git
+  worktree of its own repository, at the same relative directory, on the
+  workspace's branch.
+- `ps packages <package,...|all>`, run inside an existing family worktree,
+  adds packages the same way. It skips packages that are already present.
+- `ps packages` with no names renames the branches of the packages already
+  present to match the workspace's branch. Run it after renaming a family
+  workspace, so every repository uses the same branch name.
+- Packages are named by alias, project name, or directory.
+
+Polyscope bases a new family worktree on the family repository's
+`origin/main`. Each package worktree starts from the branch checked out in that
+package's main checkout, normally its local `main`.
+
+Use a family worktree for work that spans packages. Use the package's own
+project for work inside one package. The package checkouts in the family's main
+directory are the merge targets. Only the reconcile agent changes them, by
+merging into them.
+
 Project identifiers are aliases or names from
 `~/System/config/projects/projects.yml`. `p<alias>` remains the Positron
 shortcut.
