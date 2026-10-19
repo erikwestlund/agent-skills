@@ -45,23 +45,24 @@ order they arrive, unless the plan says one task depends on another.
 ## Family workspaces
 
 A reconcile workspace on a family project, such as `phx`, integrates several
-repositories. Each package directory in a family worktree is a git worktree of
-that package's repository. Every task uses one branch name across the family
-repository and each package it touches, so a merge request names one branch.
+repositories. Every Polyscope workspace, on a family or a single repository,
+is a full copy of the main checkout with its own `.git`. Work arrives in the
+workspace path named in each merge request. Every task uses one branch name
+across the family repository and each package it touches.
 
 - Merge one repository at a time. For each package the task touched, go to the
-  package's main checkout under the family's main directory, merge the branch
-  with the shared name into that repository's `main`, and run that
-  repository's tests. Merge the family repository's branch the same way.
+  package's main checkout under the family's main directory, fetch the shared
+  branch from `<workspace>/<package>` (for example,
+  `git fetch <workspace>/<package> <branch>:<branch>`), merge it into that
+  repository's `main`, and run that repository's tests. Merge the family
+  repository's branch the same way, fetching from `<workspace>`.
 - Run any cross-package tests in the family repository after the packages are
   merged.
 - Report one commit per repository in `MERGED` replies.
 - Push only with the user's approval. Push packages that others depend on
   before the packages that depend on them.
-- After merging, remove the task's package worktrees with the family's
-  `scripts/workspace remove`, where the family has one, or with
-  `git worktree prune` in each package once the family workspace is gone.
-  Then delete the merged branches in each repository.
+- After merging, delete the fetched branches in each repository. The
+  workspace copies are removed with their Polyscope workspaces.
 
 ## History
 

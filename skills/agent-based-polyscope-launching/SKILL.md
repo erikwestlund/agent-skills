@@ -37,11 +37,12 @@ as `agent-communication` describes. Do this before any other action.” Do not
 rely on a general naming reference later in the prompt.
 
 When a group's work spans the packages of a family project (see
-`polyscope-launch`), launch its workspaces on the family project with
-`-w <package,...>` naming the packages the group touches. Their activation
-briefs add, right after the rename instruction: "Then run `ps packages` so the
-package branches match the new name." Launch a group that works inside one
-package on that package's own project.
+`polyscope-launch`), launch its workspaces on the family project. Their
+activation briefs add, right after the rename instruction: "Then run
+`scripts/workspace add <packages>` for the packages this group touches, or
+`scripts/workspace sync` if they already have work branches." Name the packages
+when the plan knows them. Launch a group that works inside one package on that
+package's own project.
 
 Record the runtime alongside every workspace. Models with a managed Claude
 Code provider profile (`claude_*`, `ds_*`, `fw_*`, `zai_*`) use Claude Code by
