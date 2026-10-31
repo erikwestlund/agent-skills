@@ -40,6 +40,11 @@ Always put a comma before the final `and` or `or` in a list of three or more.
 - No: "The study, its team and its findings are made up for this demo."
 - Two items take no comma: "The course and its materials."
 
+Do not add commas that grammar does not require.
+
+- Yes: "Composer for the film's score."
+- No: "Composer, for the film's score."
+
 This applies to UI copy, documentation, plans, briefs, agent messages, and
 commit messages.
 
