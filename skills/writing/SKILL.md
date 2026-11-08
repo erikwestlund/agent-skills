@@ -5,8 +5,8 @@ description: "Apply the house prose style and writing conventions. Load before d
 
 # Writing
 
-These rules apply to all prose. A project's style guide can add rules for its
-own domain and deliverables.
+These rules apply to all UI copy and prose. A project's style guide can add
+rules for its own domain and deliverables.
 
 ## Governing Principle
 
@@ -24,13 +24,48 @@ reader is using. Keep only the latter.
   academic and technical subjects, lean lightly academic.
 - State the fact without performing it.
 - Explain a concept before giving its example.
-- Use ordinary sequential sentences with one claim per sentence. Avoid
+- Use short, terse, direct sentences with one useful claim each. Avoid
   compressed, slogan-like parallelism.
 - Use bullets for enumerations with parallel stems. Use paragraphs for
   arguments.
 - Use concrete subjects. Attach the explanation to the thing it describes.
+- Name things instead of describing how they relate to something else. Use the
+  tools' names or "companion tools" instead of "the tools it works with."
 - Use American English spellings: `catalog`, `color`, `gray`, `artifact`, and
   `favor`.
+
+## Headings And Labels
+
+Use descriptive nouns or concise noun phrases for headings, section labels,
+and field labels. Avoid conversational headings. Never start a heading with a
+question word such as How, What, Why, Where, or When.
+
+- Use "Architecture" or "Request flow" instead of "How it works."
+- Use "Rationale" instead of "Why this matters."
+- Use "Server administration" instead of "What you manage."
+- Use "Server features" instead of "What a self-hosted server includes."
+- Use "Artifact storage" instead of "Where published notebooks go."
+
+Actions need clear verbs, such as "Save changes" and "Create project."
+
+## Matter-Of-Fact UI Copy
+
+UI copy states what a control does in the fewest plain words. It never sells,
+charms, or chats.
+
+- Label a field with the plain noun or verb for its value: "Show" next to a
+  number, not "How many"; "Order", not "How should these be sorted?"
+- Never use a question or a "What/How/Where" phrase as a label, heading, or
+  section name: "Contents", not "What it shows"; "Visibility", not "Who can
+  see this".
+- No marketing words: "powerful", "seamless", "effortless", "beautiful",
+  "simply", "just", "magic", "smart", "instantly", "supercharge".
+- No exclamation points and no cheerful asides in labels, help text, toasts,
+  or empty states.
+- Help text says what happens and where, in one short sentence: "Lists your 6
+  most recent projects. Updates when you publish."
+- Prefer two short sentences to one sentence joined by a comma. Drop a comma
+  the sentence reads correctly without.
 
 ## Oxford Comma
 
@@ -93,4 +128,8 @@ Before returning a draft:
 1. Search it for every banned pattern above.
 2. Remove performance, throat-clearing, callbacks, and trailing flourishes.
 3. Check American spelling and the Oxford comma.
-4. Confirm that each sentence makes one useful claim.
+4. Confirm that sentences are short and direct with one useful claim each.
+5. Check that headings and labels use descriptive nouns or concise noun
+   phrases and that actions use clear verbs.
+6. Read every label, help line, and toast as UI copy: plain nouns and verbs,
+   no questions, no marketing words, and no comma it can do without.
