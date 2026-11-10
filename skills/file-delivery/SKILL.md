@@ -25,7 +25,7 @@ transfer.
 |---|---|
 | Public file | The bucket's public CDN domain, such as `media.academic.page`. |
 | Access-controlled file | A Cloudflare Worker with an R2 binding. The Worker checks the app's signed token and streams the object from R2 inside Cloudflare. |
-| Download | The app records the download, then answers 302 to a short-lived presigned URL that sets `response-content-disposition=attachment; filename=...`. |
+| Download | The app records the download, then answers 302 to a short-lived link that sets `Content-Disposition: attachment; filename=...`. The link is a presigned URL with `response-content-disposition`, or the Worker's signed URL where a Worker exists. |
 | Embedded HTML (decks, notebooks, reports) | An iframe whose `src` is the CDN or Worker URL, isolated by the iframe's `sandbox` attribute. Headers come from the Worker or a Cloudflare rule. |
 | Short link or tracked link | The app counts, then answers 302. |
 
@@ -53,8 +53,10 @@ transfer.
 - **academic.page (pequod):** every object in the `pequod` bucket is public at
   `media.academic.page`. `App\Support\MediaReader` does processing reads.
 - **framework.pub:** artifacts can be private or password-protected and
-  include bundles with relative asset paths. They go through a Worker on
-  `content.framework.pub`.
+  include bundles with relative asset paths. The `framework-content` Worker
+  serves them on `content.framework.pub/c/*`, from links the app signs with
+  `App\Support\ContentWorker` (live 2026-11-10). Downloads go through the
+  same Worker.
 
 ## Review check
 
