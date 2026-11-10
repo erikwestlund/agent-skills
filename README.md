@@ -27,6 +27,7 @@ Cross-project skills for Claude Code and Codex. OpenCode reads
 | `codex-adversarial-review` | Use Codex to independently review work from non-flagship models. |
 | `php-testing` | Run PHP tests with installed PAO support and parallel execution where supported. |
 | `writing` | House prose style and writing conventions. |
+| `file-delivery` | Serve stored files from storage's CDN, never through the app server. |
 | `project-docs` | Dated work logs in `docs/work/`, pickup notes in `docs/notes/`. |
 | `system-config` | Change the Mac only through `~/System`, never by hand. |
 | `project-tunnels` | Prepare project and worktree previews and share HTTPS tunnel links during web application work. |
