@@ -45,7 +45,7 @@ when the plan knows them. Launch a group that works inside one package on that
 package's own project.
 
 Record the runtime alongside every workspace. Models with a managed Claude
-Code provider profile (`claude_*`, `ds_*`, `fw_*`, `zai_*`) use Claude Code by
+Code provider profile (`claude_*`, `fw_*`, `zai_*`) use Claude Code by
 default. `oa_*` models use Polyscope's native OpenAI agent instead. For an
 OpenAI workspace, make the activation brief self-contained and do not instruct
 it to run Claude Code, select a Claude profile, load a Claude-only skill, or

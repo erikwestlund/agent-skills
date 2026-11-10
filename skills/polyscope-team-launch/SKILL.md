@@ -70,13 +70,13 @@ For two groups, import and registration, with “planners run Opus; the rest run
 DeepSeek Flash,” the visible progression is:
 
 ```text
-0-reconcile-...                         ds_flash   waiting
+0-reconcile-...                         fw_ds   waiting
 1-import-1-plan-review-...              claude_opus dormant
 2-registration-1-plan-review-...        claude_opus dormant
-1-import-2-orchestrator-...             ds_flash   dormant
-2-registration-2-orchestrator-...       ds_flash   dormant
-1-import-3-tasks-...                    ds_flash   dormant
-2-registration-3-tasks-...              ds_flash   dormant
+1-import-2-orchestrator-...             fw_ds   dormant
+2-registration-2-orchestrator-...       fw_ds   dormant
+1-import-3-tasks-...                    fw_ds   dormant
+2-registration-3-tasks-...              fw_ds   dormant
 ```
 
 Launching only the first three is incomplete. Never report a finished team at
@@ -100,12 +100,12 @@ one model for the entire team, that explicit override applies to every role.
 
 Interpret an explicit override such as “planners run Opus; the rest run
 DeepSeek Flash” as
-`claude_opus` for group plan/review workspaces and `ds_flash` for
+`claude_opus` for group plan/review workspaces and `fw_ds` for
 orchestrators, task executors, and `0-reconcile`. Do not treat an orchestrator
 as a planner or ask the user to resolve that distinction.
 
 Use `polyscope-launch` to identify the runtime for every selected model.
-`claude_*`, `ds_*`, `fw_*`, and `zai_*` entries use Claude Code by default;
+`claude_*`, `fw_*`, and `zai_*` entries use Claude Code by default;
 `oa_*` entries use Polyscope's native OpenAI agent. An OpenAI workspace must
 receive a self-contained role brief rather than Claude CLI or Claude-skill
 instructions. All runtimes use the same Polyscope workspace-message channel.

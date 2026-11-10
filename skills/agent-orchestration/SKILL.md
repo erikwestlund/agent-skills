@@ -31,7 +31,7 @@ Only a group orchestrator launches or delegates work inside its assigned group.
 | Reconcile | `0-reconcile-…`, only one when several groups exist | `reconciler` model | Merges approved groups, resolves conflicts, runs the full suite, keeps the history clean, and pushes. | `agent-reconcile` |
 
 For example, “planners run Opus; the rest run DeepSeek Flash” means
-`claude_opus` for group plan/review and `ds_flash` for the other three roles.
+`claude_opus` for group plan/review and `fw_ds` for the other three roles.
 An orchestrator is not a planner.
 
 ## Scope and numbering
@@ -152,6 +152,35 @@ come back, drop any that fall outside the brief and make sure each one is
 actionable. Then send the task agent one batch of numbered comments. Once a
 group’s work is approved, its orchestrator sends the merge request to
 `0-reconcile`, or the single task reconciles its own change.
+
+## Failed tasks
+
+A task worker can fail its task. `failure_escalation` in
+`~/System/config/agent-providers/role-models.yml` lists the triggers:
+
+- the worker sends `FAILED`
+- plan/review rejects the same task's work a second time for correctness
+- two context resets, or a session the harness ended, with no new commit
+
+A decision that belongs to the user, a failure outside the brief, or a broken
+environment is not a failed task. Handle those as this skill already describes.
+
+When a task fails, move it to a larger model:
+
+1. Run `agent-role escalate <provider> <failed model>`, for example
+   `agent-role escalate fireworks fw_ds`. It prints the next model.
+2. If it prints `next=ask_user`, stop. Send the user the failed reports and the
+   branch, and ask how to proceed.
+3. Otherwise, tell the failed worker to stop. Launch a new task worker on the
+   next model with `ps launch <project> --model <next>`, named by the
+   convention in `agent-communication`.
+4. Its first brief is the original brief, plus the base set to the failed
+   worker's branch, the `FAILED` report, and any open review comments. Say
+   that it continues a failed task.
+
+Each failure moves the task one step. On Fireworks the order is `fw_ds` or
+`fw_glm_flash`, then `fw_glm`, then `fw_kimi`, then the user. Record each
+escalation in the group's status. The other tasks stay on their own models.
 
 ## Track and finish
 

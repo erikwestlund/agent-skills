@@ -13,6 +13,9 @@ break the work into bounded briefs, validate file ownership, dispatch workers,
 and perform the group review. Each worker starts only after its lead-provided
 brief includes owned files, acceptance criteria, focused tests, and a base.
 
+When a worker fails its task, the lead moves it to a larger model as "Failed
+tasks" in `agent-orchestration` describes.
+
 Workers return committed review handoffs to the lead. The lead sends approved
 merge requests to the reconciler. The reconciler merges clean work and runs the
 integration checks. It escalates to `reconciler_escalation` when conflict or

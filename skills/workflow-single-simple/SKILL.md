@@ -14,5 +14,8 @@ whether a commit is requested. The worker implements, tests, and reports the
 result. It may reconcile its own change. Pushing remains explicit user
 authorization.
 
+When the worker fails its task, the launcher moves it to a larger model as
+"Failed tasks" in `agent-orchestration` describes.
+
 There is no planner, orchestrator, or separate reconciler. Escalate to
 `workflow-single-complex` if design questions or scope expansion appear.

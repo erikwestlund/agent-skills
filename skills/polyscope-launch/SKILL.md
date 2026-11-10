@@ -99,11 +99,11 @@ request identifies the agent runtime, not a required transport.
 For example:
 
 ```text
-Start an orchestrated Claude Code team for academic.page using DeepSeek Flash 4.1.
+Start an orchestrated Claude Code team for academic.page using DeepSeek Flash.
 Plan and execute these work units: sign-up, import, and demos.
 ```
 
-This resolves the project to `peq` and the model to `ds_flash`. Each named work
+This resolves the project to `peq` and the model to `fw_ds`. Each named work
 unit becomes a task group unless the user groups them differently.
 
 ## Models and providers
@@ -119,8 +119,8 @@ Interpret these common requests without asking the user to define them:
 - `Sol`, `Luna`, and `Astra` mean `oa_sol`, `oa_luna`, and `oa_astra`.
 - `Claude Code Opus` and `Opus` mean `claude_opus`, which selects the native
   Claude profile and a live Opus model together.
-- `Claude Code DeepSeek Flash 4.1` and `DeepSeek Flash 4.1` mean
-  `ds_flash`.
+- `DeepSeek Flash`, `DeepSeek Flash 4.1`, and `DeepSeek 1017` mean `fw_ds`,
+  DeepSeek V4.1 Flash 1017 on Fireworks. DeepSeek's own API is not used.
 - `Pequod`, `academic.page`, and `academic.test` mean project `peq`.
 - `workspace` means an isolated `ps launch` workspace. Use `ps direct` only
   when the user says direct, main checkout, or equivalent.
@@ -139,7 +139,7 @@ Pass a model with `-m` or `--model`:
 
 ```zsh
 ps launch peq --model oa_terra "Implement the requested change."
-ps launch peq --model ds_flash "Review the current implementation."
+ps launch peq --model fw_ds "Review the current implementation."
 ps launch peq -m oa_terra --message "Implement the requested change."
 ```
 
@@ -154,15 +154,15 @@ workspace, the agent must be idle before changing its provider profile.
 
 Do not infer a model ID from a provider or model family. The live Polyscope
 catalog decides what can launch. Use the registry's provider namespace:
-`oa_` for OpenAI, `claude_` for native Claude, `ds_` for DeepSeek's own
-platform, `fw_` for Fireworks, and `zai_` for Z.ai.
+`oa_` for OpenAI, `claude_` for native Claude, `fw_` for Fireworks, and
+`zai_` for Z.ai.
 
 ## Agent runtime
 
 The selected model also determines the agent runtime. This is not cosmetic.
 
 - A launcher selection with a managed `claude_profile` runs the Claude Code
-  CLI. That includes `claude_*`, `ds_*`, `fw_*`, and `zai_*` registry entries.
+  CLI. That includes `claude_*`, `fw_*`, and `zai_*` registry entries.
   Use Claude Code's installed skills, provider profiles, and normal Claude Code
   messaging behavior.
 - An `oa_*` selection chooses an OpenAI model in Polyscope and runs

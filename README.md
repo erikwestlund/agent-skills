@@ -41,8 +41,8 @@ reasoning-effort setting to the provider.
 
 ## Agent runtimes
 
-Model namespace also selects the runtime. `claude_*`, `ds_*`, `fw_*`, and
-`zai_*` models use Claude Code by default through a managed provider profile.
+Model namespace also selects the runtime. `claude_*`, `fw_*`, and `zai_*`
+models use Claude Code by default through a managed provider profile.
 `oa_*` models run Polyscope's native OpenAI agent, not the Claude Code CLI.
 OpenAI workspaces need self-contained briefs and Polyscope messages; do not
 give them Claude CLI, profile, or Claude-only-skill instructions.
@@ -66,7 +66,7 @@ task worker for every group. Two groups therefore start seven workspaces.
 from planner to orchestrator, then the plan-derived task brief from
 orchestrator to worker. For “planners run Opus; the rest run DeepSeek Flash,”
 planners use `claude_opus` and orchestrators, workers, and reconcile use
-`ds_flash`.
+`fw_ds`.
 
 The number after the task-group name is a sorting sequence: `1` is
 plan/review, `2` is orchestrator, and tasks start at `3` (`4+` for added
@@ -89,7 +89,7 @@ registered workspace before its first agent task. This leaves normal
 tool-permission rules in place.
 
 For example: “Start an orchestrated Claude Code team for academic.page using
-DeepSeek Flash 4.1. Plan and execute these work units: sign-up, import, and
+DeepSeek Flash. Plan and execute these work units: sign-up, import, and
 demos.”
 
 ## Install

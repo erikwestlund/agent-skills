@@ -22,7 +22,7 @@ only after your parent provides a complete implementation brief.
 
 - **Check the model.** Use the executor model named in your brief. When the
   user says planners run Opus and the rest run DeepSeek Flash, task work runs
-  `ds_flash`; do not substitute the planner model.
+  `fw_ds`; do not substitute the planner model.
 - **Take your name.** If the brief assigns a workspace name, rename to it
   first by updating both the git branch and Polyscope's database row, as
   `agent-communication` shows. After that, never rename again unless you're
@@ -54,6 +54,25 @@ When in doubt about thoroughness, make it good.
 
 Stop early only when you're truly blocked: a decision that isn't yours, or a
 brief that's wrong. Say what you need and keep going on everything else.
+
+## Failed tasks
+
+A task has failed when you cannot finish the brief or make its focused tests
+pass after real attempts. Being blocked on a decision is different and stays
+under the rule above. Do not loop on a failing approach. Commit what you have
+on your branch and send one `FAILED` handoff:
+
+- what the brief asked for and what is done
+- the failing tests, with their names and messages
+- what you tried, and why each attempt did not work
+- your best explanation of the cause
+- the worktree path, the branch, and the last commit
+
+The orchestrator may hand the task to a larger model, which starts from your
+branch and this report. Write the report for that agent.
+
+When your brief says it continues a failed task, read the earlier `FAILED`
+report first. Start from its branch and do not repeat the attempts it lists.
 
 ## Tests
 
