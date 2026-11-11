@@ -18,6 +18,12 @@ metaphors, overselling, over-defending, or emotional framing.
 When a sentence is in doubt, ask whether the writer is performing or the
 reader is using. Keep only the latter.
 
+- Prefer information over cleverness.
+- Don't manufacture rhythm, drama, or contrast.
+- Be concrete enough that the copy could not describe any other product.
+- Let interesting facts speak for themselves.
+- Sound like a thoughtful person, not a marketing department.
+
 ## Register And Voice
 
 - Prefer a clear, measured register over punchiness or marketing language. For
@@ -45,6 +51,17 @@ question word such as How, What, Why, Where, or When.
 - Use "Server administration" instead of "What you manage."
 - Use "Server features" instead of "What a self-hosted server includes."
 - Use "Artifact storage" instead of "Where published notebooks go."
+
+Write headings like email subject lines, not movie trailers.
+
+- **No eyebrow headings.** Don't put a category label above a heading.
+- **No decorative numbering.** Number sections only when their order matters.
+- **No rhythmic or contrasting titles.** Avoid formulas such as "Hard to
+  describe. Easy to recognize."
+- **No metaphorical headings.** Describe the content literally. Avoid
+  personification and clever imagery.
+- **No vague headings.** Replace "A closer look" or "Why it matters" with the
+  specific subject.
 
 Actions need clear verbs, such as "Save changes" and "Create project."
 
@@ -114,6 +131,8 @@ Treat every pattern below as a firm ban.
 - **Metaphors for technical or statistical concepts.** Use the domain's actual
   terms.
 - **Fragment-style drama.** Write complete sentences.
+- **Slogans and clichés.** Delete phrases such as "Built for teams that ship"
+  and "Unlock your potential."
 
 ## Sentence Construction
 
@@ -130,6 +149,9 @@ Before returning a draft:
 3. Check American spelling and the Oxford comma.
 4. Confirm that sentences are short and direct with one useful claim each.
 5. Check that headings and labels use descriptive nouns or concise noun
-   phrases and that actions use clear verbs.
-6. Read every label, help line, and toast as UI copy: plain nouns and verbs,
+   phrases and that actions use clear verbs. Remove eyebrows, decorative
+   numbering, and rhythmic, metaphorical, or vague headings.
+6. Check that each claim is specific to its subject. Rewrite any line that
+   could describe a different product.
+7. Read every label, help line, and toast as UI copy: plain nouns and verbs,
    no questions, no marketing words, and no comma it can do without.

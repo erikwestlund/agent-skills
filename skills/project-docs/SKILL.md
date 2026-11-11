@@ -13,6 +13,3 @@ short kebab-case topic, so a folder lists in order and is easy to scan.
   as the work goes.
 - `docs/notes/yyyy-mm-dd-<topic>.md`: notes for whoever picks the work up next.
   Say where things stand, what's left, and what's still open.
-
-These aren't the `.context/` files used in multi-agent work. Those carry live
-messages between agents (see agent-communication).

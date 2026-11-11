@@ -10,10 +10,7 @@ through it, so the repo stays a complete record of how the machine is set up.
 A project's own dependencies, such as renv or npm packages inside a project,
 aren't system changes.
 
-**First, check whether an agent is already running in `~/System`, especially a
-Claude session. If one is, contact it through the transport selected by
-`agent-communication`.** Say what you need changed and why, and let it make and
-deploy the change. If no agent is running, make the change yourself as follows:
+Make the change as follows:
 
 - Read `~/System/AGENTS.md` and `~/System/README.md` first and follow them.
 - Make the change in the repo: packages and apps go in the Ansible roles, and

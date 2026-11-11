@@ -5,23 +5,7 @@ Cross-project skills for Claude Code and Codex. OpenCode reads
 
 | Skill | For |
 |---|---|
-| `polyscope-workflow` | Route a Polyscope session to its role and supporting skills. |
-| `polyscope-launch` | Launch and inspect managed Polyscope workspaces with `ps`. |
-| `polyscope-team-launch` | Provision a Polyscope team before group orchestration begins. |
-| `workflow-select` | Select a single- or multi-agent workflow and confirm role models before launch. |
-| `workflow-single-simple` | One bounded task with one executor. |
-| `workflow-single-complex` | One complex task with planning, execution, and review. |
-| `workflow-multi-simple` | Several simple tasks with a lead, workers, and reconciliation. |
-| `workflow-multi-complex` | Several complex task groups with orchestration, focused planning, execution, and reconciliation. |
-| `agent-based-polyscope-launching` | Launch and activate every role in a Polyscope team. |
-| `agent-orchestration` | Run an orchestrated team: roles, setup, planning, dispatch, and briefs. |
-| `agent-reconcile` | The single `0-reconcile` agent: merge, test, clean history, push. |
-| `agent-plan-review` | Planning and review within one task group. |
-| `plan-review-communication` | How to request plans and reviews within one task group. |
-| `agent-task-work` | Task agents implementing a brief. |
-| `agent-communication` | Shared agent protocol with direct and file-based transports. |
-| `context-reset` | Reset a long session: a resume note, a block to paste back in, and check-ins. |
-| `agent-repurpose-workspace` | Reuse a workspace for a new role: wrap up, rename, reset. |
+| `context-reset` | Reset a long session: a resume note and a block to paste back in. |
 | `commits` | No agent attribution in commits and PRs; loose conventional-commit style; ask before running the full test suite on a commit. |
 | `commit-sync` | After a commit, check the branch against `origin` and report how to synchronize it. |
 | `codex-adversarial-review` | Use Codex to independently review work from non-flagship models. |
@@ -32,66 +16,6 @@ Cross-project skills for Claude Code and Codex. OpenCode reads
 | `system-config` | Change the Mac only through `~/System`, never by hand. |
 | `project-tunnels` | Prepare project and worktree previews and share HTTPS tunnel links during web application work. |
 | `r-stats` | Statistical work in R: framework, readability, notebooks, scripts, plots. |
-
-The managed role policy lives at
-`~/System/config/agent-providers/role-models.yml`. It maps each provider and
-semantic role to a model and requested reasoning level. Use `agent-role resolve
-<provider> <role>` before a launch. The current launcher reports
-`reasoning_effective=platform-default`, because it cannot yet transmit a
-reasoning-effort setting to the provider.
-
-## Agent runtimes
-
-Model namespace also selects the runtime. `claude_*`, `fw_*`, and `zai_*`
-models use Claude Code by default through a managed provider profile.
-`oa_*` models run Polyscope's native OpenAI agent, not the Claude Code CLI.
-OpenAI workspaces need self-contained briefs and Polyscope messages; do not
-give them Claude CLI, profile, or Claude-only-skill instructions.
-
-## Terms
-
-An **orchestrated team** divides the requested work into task groups. Each
-group has a planner/reviewer, an orchestrator, and one or more task executors.
-`0` is the initiative-level namespace for reconciliation when several groups
-exist. Task groups start at `1`. A one-task initiative uses a single
-`0-…-tasks` workspace that reconciles its own change. The planner makes the
-group plan; the orchestrator checks dependencies and file overlap, then
-dispatches its task agents from that plan. Claude Code names the requested
-agent runtime. The running harness determines whether agents use direct
-messages or context files.
-
-For `G` requested groups, an orchestrated team initially has `1 + (3 × G)`
-workspaces: `0-reconcile`, then a planner/reviewer, orchestrator, and waiting
-task worker for every group. Two groups therefore start seven workspaces.
-`agent-based-polyscope-launching` activates each one and carries `PLAN READY`
-from planner to orchestrator, then the plan-derived task brief from
-orchestrator to worker. For “planners run Opus; the rest run DeepSeek Flash,”
-planners use `claude_opus` and orchestrators, workers, and reconcile use
-`fw_ds`.
-
-The number after the task-group name is a sorting sequence: `1` is
-plan/review, `2` is orchestrator, and tasks start at `3` (`4+` for added
-workers). It is not a task ID, but it is required so each group reads top to
-bottom in Polyscope.
-
-For a multi-complex team, the launcher gives each planner a complete planning
-assignment. That authorizes planning. The planner's `PLAN READY` activates its
-orchestrator, and only the orchestrator's complete plan-derived brief activates
-the task worker. Reconciliation starts from an approved merge request. Use
-`workflow-select` before launch to choose the smaller single-simple,
-single-complex, or multi-simple workflow when it fits better.
-
-Every activation brief begins with its assigned branch name and an instruction
-to rename both the git branch and Polyscope database row before any other work.
-This is mandatory for plan/review workspaces as well as the other roles.
-
-`ps launch` and `ps direct` preapprove Claude Code folder trust for the
-registered workspace before its first agent task. This leaves normal
-tool-permission rules in place.
-
-For example: “Start an orchestrated Claude Code team for academic.page using
-DeepSeek Flash. Plan and execute these work units: sign-up, import, and
-demos.”
 
 ## Install
 
